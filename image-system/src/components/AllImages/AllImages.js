@@ -4,6 +4,7 @@ import { axiosConfig, baseUrl } from '../../utils/variables';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
 import AppContext from '../../context/AppContext';
+import { ModalImage } from '../ModalImage/ModalImage';
 
 import { Container } from '../../styles/main';
 import { Gallery } from './style/style';
@@ -17,7 +18,7 @@ export const AllImages = () => {
 
     const handleOpenImage = id => {
         setOpenImage(!openImage);
-        appContext.dispatch({ type: "GET_ACTIVE_IMAGE", activeImage: id });
+        getImageInfo(id)
     }
 
     const getImages = async() => {
@@ -34,6 +35,17 @@ export const AllImages = () => {
         }
     }
 
+    const getImageInfo = async(id) => {
+        try {
+            const response = await axios.get(`${baseUrl}/images/${id}`, axiosConfig(token))
+
+            appContext.dispatch({ type: "GET_ACTIVE_IMAGE", activeImage: response.data.image });
+
+        } catch(err) {
+            console.log(err.message)
+        }
+    }
+
     useEffect(() => {
         getImages();
     }, [])
@@ -43,20 +55,13 @@ export const AllImages = () => {
         <h4>{requestMessage}</h4>
         <Gallery>
             {appContext && appContext.images.length !== 0 && appContext.images.map( image => {
-                return <div key={image.id} onClick={handleOpenImage}>
+                return <div key={image.id} onClick={() => handleOpenImage(image.id)}>
                     <img src={image.file} alt={image.subtitle} />
                     <p>{image.subtitle}</p>
                 </div>
             })}
         </Gallery>
-        {openImage && appContext.activeImage && <div>
-            <img src={appContext.activeImage.file} alt={appContext.activeImage.subtitle} />
-            <p>{appContext.activeImage.subtitle}</p>
-            <p>{appContext.activeImage.author}</p>
-            <p>{appContext.activeImage.date}</p>
-            <p>{appContext.activeImage.tags[0]}</p>
-            <p>{appContext.activeImage.collection}</p>
-        </div>}
+        {openImage && appContext.activeImage && <ModalImage file={appContext.activeImage.file} subtitle={appContext.activeImage.subtitle} author={appContext.activeImage.author} date={appContext.activeImage.date} tags={appContext.activeImage.tags} collection={appContext.activeImage.collection} handleClick={handleOpenImage} />}
     </Container>
   );
 }
