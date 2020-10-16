@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import CollectionPage from '../pages/CollectionPage/CollectionPage';
 import CollectionsPage from '../pages/CollectionsPage/CollectionsPage';
 
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
@@ -27,6 +28,9 @@ const Router = () => {
           </Route>
           <Route exact path="/collections">
               <CollectionsPage />
+          </Route>
+          <Route exact path="/collections/:id">
+              <CollectionPage />
           </Route>
           <Route path="/">
               <ErrorPage />

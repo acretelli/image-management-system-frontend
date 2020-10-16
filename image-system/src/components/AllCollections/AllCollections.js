@@ -4,23 +4,28 @@ import { axiosConfig, baseUrl } from '../../utils/variables';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
 import AppContext from '../../context/AppContext';
-import { ModalImage } from '../ModalImage/ModalImage';
+import { ModalCollection } from '../ModalCollection/ModalCollection';
 
 import { Container } from '../../styles/main';
 import { Gallery } from './style/style';
+import { useHistory } from 'react-router-dom';
 
 
 export const AllCollections = () => {
     const appContext = useContext(AppContext);
     const [ requestMessage, setRequestMessage ] = useState("");
-    const [ openImage, setOpenImage ] = useState(false);
+    const [ openModal, setOpenModal ] = useState(false);
     const token = useProtectedRoute();
+    const history = useHistory();
 
-    const handleOpenImage = id => {
-        setOpenImage(!openImage);
+    const handleOpenModal = id => {
         getCollectionInfo(id)
+        setOpenModal(!openModal);
     }
 
+    const handleCollection = id => {
+        history.push(`/collections/${id}`)
+    }
 
     const getCollections = async() => {
         try {
@@ -57,14 +62,13 @@ export const AllCollections = () => {
         <h4>{requestMessage}</h4>
         <Gallery>
             {appContext && appContext.collections.length !== 0 && appContext.collections.map( collection => {
-                return <div key={collection.id} onClick={() => handleOpenImage(collection.id)}>
+                return <div key={collection.id} onClick={() => handleOpenModal(collection.id)}>
                     <img src={collection.image} alt={collection.title} />
                     <p>{collection.title}</p>
-                    <p>{collection.subtitle}</p>
                 </div>
             })}
         </Gallery>
-        {/* {openImage && appContext.activeImage && <ModalImage file={appContext.activeImage.file} subtitle={appContext.activeImage.subtitle} author={appContext.activeImage.author} date={appContext.activeImage.date} tags={appContext.activeImage.tags} collection={appContext.activeImage.collection} handleClick={handleOpenImage} />} */}
+        {openModal && appContext.activeCollection && <ModalCollection title={appContext.activeCollection.title} subtitle={appContext.activeCollection.subtitle} image={appContext.activeCollection.image} handleClick={() => handleCollection(appContext.activeCollection.id)} />}
     </Container>
   );
 }

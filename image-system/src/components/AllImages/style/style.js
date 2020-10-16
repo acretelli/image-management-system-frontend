@@ -6,4 +6,5 @@ export const Gallery = styled.div`
     margin: 16px auto;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 8px;
 `
