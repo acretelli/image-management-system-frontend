@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import CollectionsPage from '../pages/CollectionsPage/CollectionsPage';
 
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import HomePage from '../pages/HomePage/HomePage';
@@ -23,6 +24,9 @@ const Router = () => {
           </Route>
           <Route exact path="/profile">
               <ProfilePage />
+          </Route>
+          <Route exact path="/collections">
+              <CollectionsPage />
           </Route>
           <Route path="/">
               <ErrorPage />

@@ -9,7 +9,7 @@ function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   return (
-    <AppContext.Provider value={{ images: state.images, activeImage: state.activeImage, dispatch: dispatch }}>
+    <AppContext.Provider value={{ images: state.images, activeImage: state.activeImage, collections: state.collections, activeCollection: state.activeCollection, dispatch: dispatch }}>
       <GlobalStyle />
         <Router />
       </AppContext.Provider>
