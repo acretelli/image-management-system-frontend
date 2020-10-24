@@ -10,7 +10,7 @@ import { Container } from '../../styles/main';
 import { Gallery } from './style/style';
 
 
-export const AllImages = () => {
+export const Feed = () => {
     const appContext = useContext(AppContext);
     const [ requestMessage, setRequestMessage ] = useState("");
     const [ openImage, setOpenImage ] = useState(false);
@@ -23,7 +23,7 @@ export const AllImages = () => {
 
     const getImages = async() => {
         try {
-            const response = await axios.get(`${baseUrl}/images/all`, axiosConfig(token))
+            const response = await axios.get(`${baseUrl}/user/feed`, axiosConfig(token))
             appContext.dispatch({ type: "GET_IMAGES", images: response.data.image });
             setRequestMessage("")
         } catch(err) {
@@ -61,7 +61,7 @@ export const AllImages = () => {
                 </div>
             })}
         </Gallery>
-        {openImage && appContext.activeImage && <ModalImage id={appContext.activeImage.user_id} file={appContext.activeImage.file} subtitle={appContext.activeImage.subtitle} author={appContext.activeImage.author} date={appContext.activeImage.date} tags={appContext.activeImage.tags} collection={appContext.activeImage.collection} handleClick={handleOpenImage} />}
+        {openImage && appContext.activeImage && <ModalImage file={appContext.activeImage.file} subtitle={appContext.activeImage.subtitle} author={appContext.activeImage.author} date={appContext.activeImage.date} tags={appContext.activeImage.tags} collection={appContext.activeImage.collection} handleClick={handleOpenImage} />}
     </Container>
   );
 }

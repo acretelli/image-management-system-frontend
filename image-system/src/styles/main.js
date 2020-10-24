@@ -11,6 +11,7 @@ export const MainContainer = styled.div`
 export const Container = styled.div`
     width: ${props => props.width};
     max-width: ${props => props.maxWidth};
+    margin: ${props => props.margin};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,4 +50,17 @@ export const Link = styled.a`
 export const TextLarge = styled.p`
     font-size: 1.5rem;
     text-align: center;
+`
+
+export const Submenu = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const SubmenuLink = styled.p`
+    margin: 16px;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    cursor: pointer;
 `

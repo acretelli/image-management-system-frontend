@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { axiosConfig, baseUrl } from '../../utils/variables';
 
 export const FileUploader = () => {
 
@@ -11,7 +12,7 @@ export const FileUploader = () => {
             data.append('file', event.target.files[0]);
             console.log('Files: ', event.target.files);
 
-            const res = await axios.put('http://localhost:3003/image/upload', data);
+            const res = await axios.put(`http://localhost:3003/user/upload`, data);
             setLink(res.data.link)
         } catch(err) {
             console.log(err.message)

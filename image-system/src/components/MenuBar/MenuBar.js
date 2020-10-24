@@ -15,8 +15,8 @@ export const MenuBar = () => {
         history.push('/')
     }
 
-    const goToCollections = () => {
-        history.push('/collections')
+    const goToExplore = () => {
+        history.push('/explore')
     }
 
     useEffect(() => {
@@ -28,8 +28,8 @@ export const MenuBar = () => {
   return (
     <Container width='100vw' backgroundColor='#f2f2f2' >
       <Bar>
-            <MenuButton onClick={goToHome}>All Images</MenuButton>
-            <MenuButton onClick={goToCollections}>Collections</MenuButton>
+            <MenuButton onClick={goToHome}>Home</MenuButton>
+            <MenuButton onClick={goToExplore}>Explore</MenuButton>
       </Bar>
     </Container>
   );
