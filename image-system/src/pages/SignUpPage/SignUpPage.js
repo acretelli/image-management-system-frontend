@@ -6,7 +6,7 @@ import { MainContainer } from '../../styles/main';
 function SignUpPage() {
   return (
     <MainContainer>
-      <h1>Cadastro</h1>
+      <h1>Sign up</h1>
       <SignUp />
     </MainContainer>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+import { AddToCollection } from '../AddToCollection/AddToCollection';
 
 import { ModalWrapper, Modal, ModalImg } from './style/style';
 import { Link } from '../../styles/main';
 
-export const ModalImage = (props) => {
+export const ProfileModalImage = (props) => {
   const history = useHistory();
 
   const goToUserPage = id => {
@@ -22,6 +23,7 @@ export const ModalImage = (props) => {
             <p>{moment(props.date, "YYYY-MM-DD").format("DD/MM/YYYY")}</p>
             <p>{props.tags}</p>
             <p>{props.collection}</p>
+            <AddToCollection imageId={props.id} />
         </Modal>
      </ModalWrapper>
   );

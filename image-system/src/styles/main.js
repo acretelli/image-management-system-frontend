@@ -27,7 +27,14 @@ export const Form = styled.form`
 `
 
 export const Button = styled.button`
-    margin: 0 4px;
+    margin: ${props => {
+        if(props.margin) {
+            return props.margin
+        } else {
+            return '0 4px'
+        }
+    }
+    };
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     color: #fff;

@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import moment from 'moment';
-import { useHistory } from 'react-router-dom';
 
 import { axiosConfig, baseUrl } from '../../utils/variables';
 import useForm from '../../hooks/useForm';
-
-import { Container, Input, Button, Link, Form } from '../../styles/main';
-import { FileUploader } from '../FileUploader/FileUploader';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
-export const AddImage = (props) => {
+import { Container, Input, Button, Link, Form } from '../../styles/main';
+
+export const CreateCollection = (props) => {
     const token = useProtectedRoute();
     const [ requestMessage, setRequestMessage ] = useState("")
     const { form, onChange, resetForm } = useForm({
+        title: "",
         subtitle: "",
-        file: "",
-        tags: ""
+        image: ""
     })
 
     const handleInputChange = e => {
@@ -24,21 +21,21 @@ export const AddImage = (props) => {
         onChange(name, value)
     }
 
-    const handleLogin = async(e) => {
+    const handleForm = async(e) => {
         e.preventDefault();
 
         const body = {
+            title: form.title,
             subtitle: form.subtitle,
-            date: moment().format('YYYY-MM-DD'),
-            file: form.file,
-            tags: form.tags,
+            image: form.image
         }
 
         try {
-            const response = await axios.post(`${baseUrl}/images/add`, body, axiosConfig(token))
+            const response = await axios.put(`${baseUrl}/collection/add`, body, axiosConfig(token))
             console.log(response)
-
-            setRequestMessage("Image successfully published!")
+            setRequestMessage("Collection successfully published!")
+            resetForm();
+            props.reloadCollections();
 
         } catch(err) {
             if(err.message === "Request failed with status code 400") {
@@ -51,11 +48,19 @@ export const AddImage = (props) => {
 
   return (
     <Container margin="24px auto">
-        <Form onSubmit={handleLogin}>
+        <Form onSubmit={handleForm}>
             <Input 
                 required
                 type="text"
                 placeholder="title"
+                name="title"
+                value={form.title}
+                onChange={handleInputChange}
+            />
+            <Input 
+                required
+                type="text"
+                placeholder="subtitle"
                 name="subtitle"
                 value={form.subtitle}
                 onChange={handleInputChange}
@@ -64,20 +69,11 @@ export const AddImage = (props) => {
                 required
                 type="text"
                 placeholder="link"
-                name="file"
-                value={form.file}
+                name="image"
+                value={form.image}
                 onChange={handleInputChange}
             />
-            <Input 
-                required
-                type="text"
-                placeholder="tags"
-                name="tags"
-                value={form.tags}
-                onChange={handleInputChange}
-            />
-            <FileUploader />
-            <Button>Publish</Button>
+            <Button>Create</Button>
             <Button onClick={props.handleClick}>Close</Button>
         </Form>
         <h4>{requestMessage}</h4>

@@ -23,7 +23,7 @@ function HomePage() {
       <h1>Welcome to Labesplash</h1>
       {!addModal ? <>
         <TextLarge>Share your pictures and make the world more colorful</TextLarge>
-        <Button onClick={handleAddImageBtn}>Add Image</Button>
+        <Button  margin="24px 0" onClick={handleAddImageBtn}>Add Image</Button>
       </> : <AddImage handleClick={handleAddImageBtn} />}
       <Feed />
     </MainContainer>

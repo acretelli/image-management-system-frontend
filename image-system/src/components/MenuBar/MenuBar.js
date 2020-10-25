@@ -19,6 +19,10 @@ export const MenuBar = () => {
         history.push('/explore')
     }
 
+    const goToCollections = () => {
+        history.push('/collections')
+    }
+
     useEffect(() => {
         if(token) {
             setIsLoggedIn(true)
@@ -29,6 +33,7 @@ export const MenuBar = () => {
     <Container width='100vw' backgroundColor='#f2f2f2' >
       <Bar>
             <MenuButton onClick={goToHome}>Home</MenuButton>
+            <MenuButton onClick={goToCollections}>Collections</MenuButton>
             <MenuButton onClick={goToExplore}>Explore</MenuButton>
       </Bar>
     </Container>

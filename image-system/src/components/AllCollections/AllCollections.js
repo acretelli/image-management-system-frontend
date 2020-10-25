@@ -6,9 +6,10 @@ import useProtectedRoute from '../../hooks/useProtectedRoute';
 import AppContext from '../../context/AppContext';
 import { ModalCollection } from '../ModalCollection/ModalCollection';
 
-import { Container } from '../../styles/main';
-import { Gallery } from './style/style';
+import { Container, Button } from '../../styles/main';
+import { Gallery, GalleryItem, GalleryImg } from './style/style';
 import { useHistory } from 'react-router-dom';
+import { CreateCollection } from '../CreateCollection/CreateCollection';
 
 
 export const AllCollections = () => {
@@ -57,15 +58,24 @@ export const AllCollections = () => {
         getCollections();
     }, [])
 
+    const [ addModal, setAddModal ] = useState(false);
+  
+    const handleAddImageBtn = () => {
+      setAddModal(!addModal)
+    }
+
   return (
     <Container>
+        {!addModal ?
+        <Button margin="24px 0" onClick={handleAddImageBtn}>Or create a collection</Button>
+        : <CreateCollection reloadCollections={getCollections} handleClick={handleAddImageBtn} />}
         <h4>{requestMessage}</h4>
         <Gallery>
             {appContext && appContext.collections.length !== 0 && appContext.collections.map( collection => {
-                return <div key={collection.id} onClick={() => handleOpenModal(collection.id)}>
-                    <img src={collection.image} alt={collection.title} />
+                return <GalleryItem key={collection.id} onClick={() => handleOpenModal(collection.id)}>
+                    <GalleryImg src={collection.image} alt={collection.title} />
                     <p>{collection.title}</p>
-                </div>
+                </GalleryItem>
             })}
         </Gallery>
         {openModal && appContext.activeCollection && <ModalCollection title={appContext.activeCollection.title} subtitle={appContext.activeCollection.subtitle} image={appContext.activeCollection.image} handleClick={() => handleCollection(appContext.activeCollection.id)} />}

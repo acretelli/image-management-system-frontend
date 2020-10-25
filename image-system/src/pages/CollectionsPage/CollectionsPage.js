@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
-import { MainContainer, TextLarge } from '../../styles/main';
 import { AllCollections } from '../../components/AllCollections/AllCollections';
 import { MenuBar } from '../../components/MenuBar/MenuBar';
+
+import { MainContainer, TextLarge } from '../../styles/main';
 
 function CollectionsPage() {
     const token = useProtectedRoute();
