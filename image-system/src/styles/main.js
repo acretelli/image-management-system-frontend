@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 `
 
 export const Container = styled.div`
@@ -17,6 +18,7 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     background-color:  ${props => props.backgroundColor};
+    position: relative;
 `
 
 export const Form = styled.form`
@@ -35,10 +37,28 @@ export const Button = styled.button`
         }
     }
     };
+    height: 36px;
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     color: #fff;
     background-color: #056CF2;
+`
+
+export const IconBtn = styled.img`
+    height: 16px;
+    width: 16px;
+    margin: 0 4px;
+`
+
+export const CloseBtn = styled.img`
+    height: 24px;
+    width: 24px;
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    cursor: pointer;
 `
 
 export const Input = styled.input`

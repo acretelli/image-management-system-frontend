@@ -8,7 +8,7 @@ import AppContext from '../../context/AppContext';
 import { ModalImage } from '../ModalImage/ModalImage';
 
 import { Container } from '../../styles/main';
-import { Gallery, GalleryItem, GalleryImg } from './style/style';
+import { Gallery, GalleryItem, GalleryImg } from '../../styles/gallery.js';
 
 
 export const AllImages = () => {
@@ -41,8 +41,7 @@ export const AllImages = () => {
         try {
             const response = await axios.get(`${baseUrl}/images/${id}`, axiosConfig(token))
 
-            appContext.dispatch({ type: "GET_ACTIVE_IMAGE", activeImage: response.data.image });
-            console.log(response.data.image)
+            appContext.dispatch({ type: "GET_ACTIVE_IMAGE", activeImage: response.data.image[0] });
 
         } catch(err) {
             console.log(err.message)

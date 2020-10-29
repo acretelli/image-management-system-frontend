@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { AddToCollection } from '../AddToCollection/AddToCollection';
 
-import { ModalWrapper, Modal, ModalImg } from './style/style';
+import { ModalWrapper, Modal, ModalImg } from '../../styles/modal.js';
 import { Link } from '../../styles/main';
 
 export const ProfileModalImage = (props) => {

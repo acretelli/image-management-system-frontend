@@ -29,7 +29,6 @@ export const Login = () => {
         }
         try {
             const response = await axios.post(`${baseUrl}/user/login`, body)
-            console.log(response)
             window.localStorage.setItem("token", response.data.token);
             setRequestMessage("")
 

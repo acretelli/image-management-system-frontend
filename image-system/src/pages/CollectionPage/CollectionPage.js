@@ -6,9 +6,9 @@ import useProtectedRoute from '../../hooks/useProtectedRoute';
 import { baseUrl, axiosConfig } from '../../utils/variables';
 
 import { MainContainer, TextLarge } from '../../styles/main';
-import { AllCollections } from '../../components/AllCollections/AllCollections';
 import { MenuBar } from '../../components/MenuBar/MenuBar';
 import AppContext from '../../context/AppContext';
+import { Gallery, GalleryItem, GalleryImg } from '../../styles/gallery';
 
 function CollectionPage() {
     const token = useProtectedRoute();
@@ -16,6 +16,11 @@ function CollectionPage() {
     const id = params.id;
     const appContext = useContext(AppContext);
     const [ requestMessage, setRequestMessage ] = useState("");
+    const [ openModal, setOpenModal ] = useState(false);
+
+    const handleOpenModal = () => {
+        setOpenModal(!openModal);
+    }
 
     const getCollection = async() => {
         try {
@@ -44,6 +49,14 @@ function CollectionPage() {
         <h1>{appContext && appContext.activeCollection && appContext.activeCollection.title}</h1>
       <TextLarge>{appContext && appContext.activeCollection && appContext.activeCollection.subtitle}</TextLarge>
       <TextLarge>{requestMessage}</TextLarge>
+      <Gallery>
+        {appContext && appContext.activeCollection && appContext.activeCollection.images !== 0 && appContext.activeCollection.images.map( image => {
+          return <GalleryItem key={image.id} onClick={() => handleOpenModal(image.id)}>
+            <GalleryImg src={image.file} alt={image.subtitle} />
+            <p>{image.subtitle}</p>
+          </GalleryItem>
+        })}
+      </Gallery>
     </MainContainer>
   );
 }

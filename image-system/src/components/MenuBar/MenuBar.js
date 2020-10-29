@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
 import { Container } from '../../styles/main';
-import { Bar, MenuButton } from './style/style';
+import { Bar, MenuButton } from '../../styles/secondaryMenu.js';
 
 
 export const MenuBar = () => {

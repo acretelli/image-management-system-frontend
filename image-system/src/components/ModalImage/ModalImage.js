@@ -2,8 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 
-import { ModalWrapper, Modal, ModalImg } from './style/style';
-import { Link } from '../../styles/main';
+import { ModalWrapper, Modal, ModalImg } from '../../styles/modal.js';
+import { Link, CloseBtn } from '../../styles/main';
+
+import iconClose from '../../images/close.svg';
 
 export const ModalImage = (props) => {
   const history = useHistory();
@@ -15,7 +17,7 @@ export const ModalImage = (props) => {
   return (
     <ModalWrapper>
         <Modal>
-            <p onClick={props.handleClick}>X</p>
+            <CloseBtn src={iconClose} onClick={props.handleClick} />
             <ModalImg src={props.file} alt={props.subtitle} />
             <p>{props.subtitle}</p>
             <Link onClick={() => goToUserPage(props.id)}>{props.author}</Link>

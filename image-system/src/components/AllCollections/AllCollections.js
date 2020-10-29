@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { axiosConfig, baseUrl } from '../../utils/variables';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
 import AppContext from '../../context/AppContext';
 import { ModalCollection } from '../ModalCollection/ModalCollection';
+import { CreateCollection } from '../CreateCollection/CreateCollection';
 
 import { Container, Button } from '../../styles/main';
-import { Gallery, GalleryItem, GalleryImg } from './style/style';
-import { useHistory } from 'react-router-dom';
-import { CreateCollection } from '../CreateCollection/CreateCollection';
+import { Gallery, GalleryItem, GalleryImg } from '../../styles/gallery.js';
 
 
 export const AllCollections = () => {
@@ -32,7 +32,6 @@ export const AllCollections = () => {
         try {
             const response = await axios.get(`${baseUrl}/collection/all`, axiosConfig(token))
             appContext.dispatch({ type: "GET_COLLECTIONS", collections: response.data.collections });
-            console.log(appContext && appContext.collections)
             setRequestMessage("")
         } catch(err) {
             if(err.message === "Request failed with status code 400") {

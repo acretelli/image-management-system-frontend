@@ -1,4 +1,4 @@
-# Projeto de sistema de gerenciamento de imagens (frontend)
+# Projeto de sistema de gerenciamento de imagens (frontend) - em produção
 
 ## 1. Usuários
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../styles/main';
-import { ModalWrapper, Modal } from './style/style';
+import { ModalWrapper, Modal } from '../../styles/modal.js';
 
 export const ModalCollection = (props) => {
   return (

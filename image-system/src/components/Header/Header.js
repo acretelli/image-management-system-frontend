@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
-import { Container, Button } from '../../styles/main';
-import { Bar, Logo } from './style/style';
+import { Container, Button, IconBtn } from '../../styles/main';
+import { Bar, Logo } from '../../styles/header.js';
 
+import iconProfile from '../../images/profile.svg';
 
 export const Header = () => {
     const history = useHistory();
@@ -41,7 +42,7 @@ export const Header = () => {
             <Logo onClick={goToHome}>Labesplash</Logo>
         </div>
         <div>
-            <Button onClick={goToProfile}>Profile</Button>
+            <Button onClick={goToProfile}><IconBtn src={iconProfile} alt="Profile icon" /></Button>
             <Button onClick={handleLogout}>Logout</Button>
         </div>
       </Bar> : <Bar>

@@ -7,7 +7,6 @@ import { Container } from '../../styles/main';
 import { ProfileModalImage } from '../ProfileModalImage/ProfileModalImage';
 import AppContext from '../../context/AppContext';
 
-
 export const Profile = () => {
     const token = useProtectedRoute();
     const appContext = useContext(AppContext);

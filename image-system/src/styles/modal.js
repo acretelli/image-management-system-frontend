@@ -22,10 +22,10 @@ export const Modal = styled.div`
     align-items:  center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 `
 
 export const ModalImg = styled.img`
     height: 300px;
-    margin: 16px 0;
     object-fit: cover;
 `
