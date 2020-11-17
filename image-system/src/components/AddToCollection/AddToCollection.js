@@ -45,25 +45,6 @@ export const AddToCollection = (props) => {
             }
         }
     }
-    const getCollections = async() => {
-        try {
-            const response = await axios.get(`${baseUrl}/collection/all`, axiosConfig(token))
-            appContext.dispatch({ type: "GET_COLLECTIONS", collections: response.data.collections });
-            console.log(appContext && appContext.collections)
-            setRequestMessage("")
-        } catch(err) {
-            if(err.message === "Request failed with status code 400") {
-                setRequestMessage("No collection found.")
-            } else {
-                setRequestMessage(err.message)
-            }
-        }
-    }
-
-    useEffect(() => {
-        getCollections();
-    }, [history])
-
 
   return (
       <>

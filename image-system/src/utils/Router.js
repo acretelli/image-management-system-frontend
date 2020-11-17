@@ -6,6 +6,7 @@ import CollectionPage from '../pages/CollectionPage/CollectionPage';
 import CollectionsPage from '../pages/CollectionsPage/CollectionsPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import HomePage from '../pages/HomePage/HomePage';
+import FeedPage from '../pages/FeedPage/FeedPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
@@ -24,6 +25,9 @@ const Router = () => {
           </Route>
           <Route exact path="/">
               <HomePage />
+          </Route>
+          <Route exact path="/feed">
+              <FeedPage />
           </Route>
           <Route exact path="/profile">
               <ProfilePage />

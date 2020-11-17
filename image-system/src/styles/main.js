@@ -45,7 +45,7 @@ export const Button = styled.button`
 `
 
 export const IconBtn = styled.img`
-    height: 16px;
+    height: 14px;
     width: 16px;
     margin: 0 4px;
 `
@@ -90,4 +90,33 @@ export const SubmenuLink = styled.p`
     font-size: 1.15rem;
     text-transform: uppercase;
     cursor: pointer;
+`
+
+export const BigText = styled.h1`
+    text-align: center;
+    margin: 16px;
+    color: #056CF2;
+`
+
+export const MediumText = styled.h3`
+    margin: 16px;
+    text-align: center;
+`
+
+export const NormalText = styled.p`
+    text-align: center;
+    margin: 4px 0;
+`
+
+export const BoldText = styled.p`
+    text-align: center;
+    font-weight: 700;
+    margin: 4px 0;
+    color: #056CF2;
+`
+
+export const SmallText = styled.p`
+    opacity: 0.6;
+    font-size: 0.9rem;
+    text-align: center;
 `

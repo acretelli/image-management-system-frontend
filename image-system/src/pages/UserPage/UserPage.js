@@ -10,7 +10,6 @@ function UserPage() {
     <MainContainer>
         <Header />
         <MenuBar />
-        <h1>User</h1>
       <User />
     </MainContainer>
   );

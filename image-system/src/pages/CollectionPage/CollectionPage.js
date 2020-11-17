@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 import { baseUrl, axiosConfig } from '../../utils/variables';
-
-import { MainContainer, TextLarge } from '../../styles/main';
-import { MenuBar } from '../../components/MenuBar/MenuBar';
 import AppContext from '../../context/AppContext';
+
+import { ModalImage } from '../../components/ModalImage/ModalImage';
+import { MenuBar } from '../../components/MenuBar/MenuBar';
+import { MainContainer, TextLarge } from '../../styles/main';
 import { Gallery, GalleryItem, GalleryImg } from '../../styles/gallery';
 
 function CollectionPage() {
@@ -15,32 +16,23 @@ function CollectionPage() {
     const params = useParams();
     const id = params.id;
     const appContext = useContext(AppContext);
-    const [ requestMessage, setRequestMessage ] = useState("");
     const [ openModal, setOpenModal ] = useState(false);
 
-    const handleOpenModal = () => {
+    const handleOpenModal = id => {
+        getImageInfo(id)
         setOpenModal(!openModal);
     }
 
-    const getCollection = async() => {
+    const getImageInfo = async(id) => {
         try {
-            const response = await axios.get(`${baseUrl}/collection/${id}`, axiosConfig(token))
-            appContext.dispatch({ type: "GET_ACTIVE_COLLECTION", activeCollection: response.data.collection });
-            console.log(appContext && appContext.activeCollection)
-            setRequestMessage("")
+            const response = await axios.get(`${baseUrl}/images/${id}`, axiosConfig(token))
+            
+            appContext.dispatch({ type: "GET_ACTIVE_IMAGE", activeImage: response.data.image });
+
         } catch(err) {
-            if(err.message === "Request failed with status code 400") {
-                setRequestMessage("No collection found.")
-            } else {
-                setRequestMessage(err.message)
-            }
+            console.log(err.message)
         }
     }
-    
-    useEffect(() => {
-        getCollection();
-    }, [])
-
 
   return (
     <MainContainer>
@@ -48,7 +40,7 @@ function CollectionPage() {
       <MenuBar />
         <h1>{appContext && appContext.activeCollection && appContext.activeCollection.title}</h1>
       <TextLarge>{appContext && appContext.activeCollection && appContext.activeCollection.subtitle}</TextLarge>
-      <TextLarge>{requestMessage}</TextLarge>
+      <TextLarge>{appContext && appContext.requestMessage}</TextLarge>
       <Gallery>
         {appContext && appContext.activeCollection && appContext.activeCollection.images !== 0 && appContext.activeCollection.images.map( image => {
           return <GalleryItem key={image.id} onClick={() => handleOpenModal(image.id)}>
@@ -56,6 +48,16 @@ function CollectionPage() {
             <p>{image.subtitle}</p>
           </GalleryItem>
         })}
+        {openModal && appContext.activeImage && 
+          <ModalImage 
+            id={appContext.activeImage.user_id} 
+            file={appContext.activeImage.file} 
+            subtitle={appContext.activeImage.subtitle} 
+            author={appContext.activeImage.author} 
+            date={appContext.activeImage.date} 
+            tags={appContext.activeImage.tags} 
+            collection={appContext.activeImage.collection} 
+            handleClick={handleOpenModal} />}
       </Gallery>
     </MainContainer>
   );

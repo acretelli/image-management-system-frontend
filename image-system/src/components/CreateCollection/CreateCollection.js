@@ -5,7 +5,7 @@ import { axiosConfig, baseUrl } from '../../utils/variables';
 import useForm from '../../hooks/useForm';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
-import { Container, Input, Button, Link, Form } from '../../styles/main';
+import { Container, Input, Button, Form } from '../../styles/main';
 
 export const CreateCollection = (props) => {
     const token = useProtectedRoute();

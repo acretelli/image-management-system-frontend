@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 
 import { ModalWrapper, Modal, ModalImg } from '../../styles/modal.js';
-import { Link, CloseBtn } from '../../styles/main';
+import { MediumText, BoldText, CloseBtn, SmallText, NormalText } from '../../styles/main';
 
 import iconClose from '../../images/close.svg';
 
@@ -19,11 +19,11 @@ export const ModalImage = (props) => {
         <Modal>
             <CloseBtn src={iconClose} onClick={props.handleClick} />
             <ModalImg src={props.file} alt={props.subtitle} />
-            <p>{props.subtitle}</p>
-            <Link onClick={() => goToUserPage(props.id)}>{props.author}</Link>
-            <p>{moment(props.date, "YYYY-MM-DD").format("DD/MM/YYYY")}</p>
-            <p>{props.tags}</p>
-            <p>{props.collection}</p>
+            <MediumText>{props.subtitle}</MediumText>
+            <BoldText onClick={() => goToUserPage(props.id)}>{props.author}</BoldText>
+            <SmallText>{moment(props.date, "YYYY-MM-DD").format("DD/MM/YYYY")}</SmallText>
+            <NormalText>{props.tags}</NormalText>
+            <NormalText>{props.collection}</NormalText>
         </Modal>
      </ModalWrapper>
   );

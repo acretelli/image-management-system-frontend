@@ -1,16 +1,20 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
+import AppContext from "../context/AppContext";
 
 const useProtectedRoute = () => {
     const history = useHistory();
+    const appContext = useContext(AppContext);
     const token = window.localStorage.getItem("token");
 
     useEffect(() => {
-      setTimeout(() => {
         if(token === null) {
           history.push("/login");
-        } 
-      }, 3000)
+        }
+
+        if(!appContext) {
+          history.push("/");
+        }
       }, [history]);
 
   return token;

@@ -8,7 +8,7 @@ import AppContext from '../../context/AppContext';
 import { ModalCollection } from '../ModalCollection/ModalCollection';
 import { CreateCollection } from '../CreateCollection/CreateCollection';
 
-import { Container, Button } from '../../styles/main';
+import { Container, Button, BoldText } from '../../styles/main';
 import { Gallery, GalleryItem, GalleryImg } from '../../styles/gallery.js';
 
 
@@ -29,18 +29,18 @@ export const AllCollections = () => {
     }
 
     const getCollections = async() => {
-        try {
-            const response = await axios.get(`${baseUrl}/collection/all`, axiosConfig(token))
-            appContext.dispatch({ type: "GET_COLLECTIONS", collections: response.data.collections });
-            setRequestMessage("")
-        } catch(err) {
-            if(err.message === "Request failed with status code 400") {
-                setRequestMessage("No collection found.")
-            } else {
-                setRequestMessage(err.message)
-            }
-        }
-    }
+      try {
+          const response = await axios.get(`${baseUrl}/collection/all`, axiosConfig(token))
+          appContext.dispatch({ type: "GET_COLLECTIONS", collections: response.data.collections });
+          appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "" });
+      } catch(err) {
+          if(err.message === "Request failed with status code 400") {
+            appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "No collection found." });
+          } else {
+            appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: err.message });
+          }
+      }
+  }
 
     const getCollectionInfo = async(id) => {
         try {
@@ -53,9 +53,6 @@ export const AllCollections = () => {
         }
     }
 
-    useEffect(() => {
-        getCollections();
-    }, [])
 
     const [ addModal, setAddModal ] = useState(false);
   
@@ -73,11 +70,18 @@ export const AllCollections = () => {
             {appContext && appContext.collections.length !== 0 && appContext.collections.map( collection => {
                 return <GalleryItem key={collection.id} onClick={() => handleOpenModal(collection.id)}>
                     <GalleryImg src={collection.image} alt={collection.title} />
-                    <p>{collection.title}</p>
+                    <BoldText>{collection.title}</BoldText>
                 </GalleryItem>
             })}
         </Gallery>
-        {openModal && appContext.activeCollection && <ModalCollection title={appContext.activeCollection.title} subtitle={appContext.activeCollection.subtitle} image={appContext.activeCollection.image} handleClick={() => handleCollection(appContext.activeCollection.id)} />}
+        {openModal && appContext.activeCollection && 
+            <ModalCollection 
+                handleCloseBtn = {handleOpenModal}
+                title={appContext.activeCollection.title} 
+                subtitle={appContext.activeCollection.subtitle} 
+                image={appContext.activeCollection.image} 
+                handleClick={() => handleCollection(appContext.activeCollection.id)} 
+            />}
     </Container>
   );
 }

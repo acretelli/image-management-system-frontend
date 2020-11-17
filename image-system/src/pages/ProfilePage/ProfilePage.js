@@ -7,8 +7,8 @@ import { MainContainer } from '../../styles/main';
 function ProfilePage() {
   return (
     <MainContainer>
-        <Header />
-      <h1>Profile</h1>
+      <Header />
+      <h1>Your profile</h1>
       <Profile />
     </MainContainer>
   );

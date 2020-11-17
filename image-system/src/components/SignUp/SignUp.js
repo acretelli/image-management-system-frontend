@@ -33,11 +33,17 @@ export const SignUp = () => {
         }
 
         try {
-            const response = await axios.post(`${baseUrl}/user/signup`, body)
-    
-            window.localStorage.setItem("token", response.token);
-            setRequestMessage("")
+            const response = await axios.post(`${baseUrl}/user/signup`, body);
 
+            const token = response.data.token;
+            setRequestMessage("User created successfully")
+            window.localStorage.setItem("token", token);
+                
+            if(token) {
+                history.push("/");
+            }
+
+            setRequestMessage("")
         } catch(err) {
             if(err.message === "Request failed with status code 400") {
                 setRequestMessage("Invalid user or password.")

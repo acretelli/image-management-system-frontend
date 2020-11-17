@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { axiosConfig, baseUrl } from '../../utils/variables';
 import { useHistory } from 'react-router-dom';
-
-import { baseUrl } from '../../utils/variables';
 import useForm from '../../hooks/useForm';
 
 import { Container, Input, Button, Link, Form } from '../../styles/main';
+import AppContext from '../../context/AppContext';
 
 export const Login = () => {
     const history = useHistory();
+    const appContext = useContext(AppContext);
     const [ requestMessage, setRequestMessage ] = useState("")
     const { form, onChange, resetForm } = useForm({
         email: "",
@@ -18,6 +19,21 @@ export const Login = () => {
     const handleInputChange = e => {
         const { name, value } = e.target;
         onChange(name, value)
+    }
+
+    const getFeed = async(token) => {
+        try {
+            const response = await axios.get(`${baseUrl}/user/feed`, axiosConfig(token))
+            appContext.dispatch({ type: "GET_IMAGES", images: response.data });
+            appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "" });
+
+        } catch(err) {
+            if(err.message === "Request failed with status code 400") {
+                appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "No image found." });
+            } else {
+                appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: err.message });
+            }
+        }
     }
 
     const handleLogin = async(e) => {
@@ -31,7 +47,7 @@ export const Login = () => {
             const response = await axios.post(`${baseUrl}/user/login`, body)
             window.localStorage.setItem("token", response.data.token);
             setRequestMessage("")
-
+            getFeed(response.data.token);
             history.push('/')
 
         } catch(err) {

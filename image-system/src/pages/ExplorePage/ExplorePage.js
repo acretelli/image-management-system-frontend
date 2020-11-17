@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { AllCollections } from '../../components/AllCollections/AllCollections';
+import React from 'react';
 import { AllImages } from '../../components/AllImages/AllImages';
-import { CreateCollection } from '../../components/CreateCollection/CreateCollection';
 import { Header } from '../../components/Header/Header';
 import { MenuBar } from '../../components/MenuBar/MenuBar';
 
-import { MainContainer, TextLarge, Submenu, SubmenuLink, Button } from '../../styles/main';
+import { MainContainer, TextLarge } from '../../styles/main';
 
 function ExplorePage() {
 
