@@ -3,7 +3,7 @@
 :dash: [Deploy da aplicação](http://labesplash.s3-website-us-east-1.amazonaws.com/)
 
 <p align="center">
- <img src="https://user-images.githubusercontent.com/29711622/99461331-65db0480-2910-11eb-8272-fecf202bf84d.gif)">
+ <img src="https://user-images.githubusercontent.com/29711622/99461331-65db0480-2910-11eb-8272-fecf202bf84d.gif">
 </p>
 
 <br>
