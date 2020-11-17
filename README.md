@@ -1,7 +1,3 @@
-# Labenu | Full-Stack Web Development Bootcamp
-Apredizado de frontend, backend e soft skills
-
-
 # Frontend - Projeto de sistema de gerenciamento de imagens
 
 :dash: [Deploy da aplicação](http://labesplash.s3-website-us-east-1.amazonaws.com/)
@@ -136,3 +132,7 @@ Copyright :copyright: 2020 - LabeFood
 - [Email](anna.cbf@gmail.com)
 
 <br>
+
+### Produzido para Labenu | Full-Stack Web Development Bootcamp
+Apredizado de frontend, backend e soft skills
+
