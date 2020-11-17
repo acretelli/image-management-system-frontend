@@ -27,9 +27,24 @@ export const Profile = () => {
         }
     }
 
+    const getCollections = async() => {
+      try {
+          const response = await axios.get(`${baseUrl}/collection/all`, axiosConfig(token))
+          appContext.dispatch({ type: "GET_COLLECTIONS", collections: response.data.collections });
+          appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "" });
+      } catch(err) {
+          if(err.message === "Request failed with status code 400") {
+            appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: "No collection found." });
+          } else {
+            appContext.dispatch({ type: "GET_REQUEST_MESSAGE", requestMessage: err.message });
+          }
+      }
+  }
+
     const [ openImage, setOpenImage ] = useState(false);
 
     const handleOpenImage = id => {
+        getCollections();
         setOpenImage(!openImage);
         getImageInfo(id)
     }

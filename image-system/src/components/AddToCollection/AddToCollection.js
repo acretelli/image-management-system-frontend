@@ -7,7 +7,7 @@ import AppContext from '../../context/AppContext';
 import useForm from '../../hooks/useForm';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
-import { Container, Button, Form } from '../../styles/main';
+import { Container, Button, Form, ContainerFlex, BoldText } from '../../styles/main';
 
 export const AddToCollection = (props) => {
     const history = useHistory();
@@ -22,10 +22,12 @@ export const AddToCollection = (props) => {
     const handleInputChange = e => {
         const { name, value } = e.target;
         onChange(name, value)
+        console.log(form.collection)
     }
 
     const handleForm = async(e) => {
         e.preventDefault();
+        console.log(form.collection)
 
         const id = props.imageId
         const body = {
@@ -48,25 +50,27 @@ export const AddToCollection = (props) => {
 
   return (
       <>
-        {appContext && appContext.collections && appContext.collections.length !== 0 && <Container margin="24px auto">
+        {appContext && appContext.collections && appContext.collections.length !== 0 && <Container margin="0 auto">
             <Form onSubmit={handleForm}>
-                <select
-                    required
-                    type="text"
-                    placeholder="collections"
-                    name="collection"
-                    value={form.collection}
-                    onChange={handleInputChange}
-                >
-                    <option value="" >Select a collection</option>
-                    {appContext.collections.map( collection => {
-                        return <option key={collection.id} value={collection.id} >{collection.title}</option>
-                    })
-                    }
-                </select>
-                <Button>Add</Button>
+                <ContainerFlex margin="0 auto">
+                    <select
+                        required
+                        type="text"
+                        placeholder="collections"
+                        name="collection"
+                        value={form.collection}
+                        onChange={handleInputChange}
+                    >
+                        <option value="" >Select a collection</option>
+                        {appContext.collections.map( collection => {
+                            return <option key={collection.id} value={collection.id} >{collection.title}</option>
+                        })
+                        }
+                    </select>
+                    <Button margin="0 8px">Add</Button>
+                </ContainerFlex>
             </Form>
-            <h4>{requestMessage}</h4>
+            <BoldText>{requestMessage}</BoldText>
         </Container>}
     </>
   );

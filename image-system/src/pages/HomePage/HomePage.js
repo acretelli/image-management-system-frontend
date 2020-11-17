@@ -7,7 +7,7 @@ import AppContext from '../../context/AppContext';
 
 import { Header } from '../../components/Header/Header';
 
-import { Button, MainContainer, TextLarge } from '../../styles/main';
+import { Button, Container, MainContainer, TextLarge } from '../../styles/main';
 import { MenuBar } from '../../components/MenuBar/MenuBar';
 
 function HomePage() {
@@ -39,9 +39,11 @@ function HomePage() {
     <MainContainer>
       <Header />
       <MenuBar />
-      <h1>Welcome to Labesplash</h1>
-      <TextLarge>Share your pictures and make the world more colorful</TextLarge>
-      <Button margin="24px 0" onClick={goToFeed}>Start</Button>
+      <Container height="calc(100vh - 120px)">
+        <h1>Welcome to Labesplash</h1>
+        <TextLarge>Share your pictures and make the world more colorful</TextLarge>
+        <Button margin="24px 0" onClick={goToFeed}>Start</Button>
+      </Container>
     </MainContainer>
   );
 }

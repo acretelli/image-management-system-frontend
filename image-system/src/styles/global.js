@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle `
     }
 
     h1, h2 {
-        margin: 40px 0;
+        margin: 24px 0;
     }
 
     h4 {
@@ -45,7 +45,7 @@ export const GlobalStyle = createGlobalStyle `
         cursor: pointer
     }
 
-    input, button {
+    input, button, select {
         padding: 8px 16px;
         border-radius: 4px;
         box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25)

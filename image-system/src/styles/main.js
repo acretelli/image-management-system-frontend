@@ -12,12 +12,24 @@ export const MainContainer = styled.div`
 export const Container = styled.div`
     width: ${props => props.width};
     max-width: ${props => props.maxWidth};
+    height: ${props => props.height};
     margin: ${props => props.margin};
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color:  ${props => props.backgroundColor};
+    position: relative;
+`
+
+export const ContainerFlex = styled.div`
+    width: ${props => props.width};
+    max-width: ${props => props.maxWidth};
+    height: auto;
+    margin: ${props => props.margin};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
 `
 
@@ -42,6 +54,22 @@ export const Button = styled.button`
     font-weight: 700;
     color: #fff;
     background-color: #056CF2;
+`
+
+export const DeleteButton = styled.button`
+    margin: ${props => {
+        if(props.margin) {
+            return props.margin
+        } else {
+            return '0 4px'
+        }
+    }
+    };
+    height: 36px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    background-color: #D9414E;
 `
 
 export const IconBtn = styled.img`
