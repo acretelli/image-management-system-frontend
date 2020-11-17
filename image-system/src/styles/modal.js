@@ -23,6 +23,7 @@ export const Modal = styled.div`
     justify-content: center;
     flex-direction: column;
     position: relative;
+    overflow: auto;
 `
 
 export const ModalImg = styled.img`

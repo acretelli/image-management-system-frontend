@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { axiosConfig, baseUrl } from '../../utils/variables';
 import useForm from '../../hooks/useForm';
 
-import { Container, Input, Button, Link, Form } from '../../styles/main';
+import { Container, ContainerFlex, Input, Button, Link, Form } from '../../styles/main';
 import { FileUploader } from '../FileUploader/FileUploader';
 import useProtectedRoute from '../../hooks/useProtectedRoute';
 
@@ -77,8 +77,10 @@ export const AddImage = (props) => {
                 onChange={handleInputChange}
             />
             <FileUploader />
-            <Button>Publish</Button>
-            <Button onClick={props.handleClick}>Close</Button>
+            <ContainerFlex margin="16px auto 0 auto">
+                <Button>Publish</Button>
+                <Button onClick={props.handleClick}>Close</Button>
+            </ContainerFlex>
         </Form>
         <h4>{requestMessage}</h4>
     </Container>
