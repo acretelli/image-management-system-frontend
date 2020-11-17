@@ -1,4 +1,29 @@
-# Projeto de sistema de gerenciamento de imagens (frontend)
+# Labenu | Full-Stack Web Development Bootcamp
+Apredizado de frontend, backend e soft skills
+
+
+# Frontend - Projeto de sistema de gerenciamento de imagens
+
+:dash: [Deploy da aplicação](http://labesplash.s3-website-us-east-1.amazonaws.com/)
+
+<p align="center">
+![labesplash2](https://user-images.githubusercontent.com/29711622/99461331-65db0480-2910-11eb-8272-fecf202bf84d.gif)"
+</p>
+
+<br>
+
+## Principais tecnologias/ferramentas utilizadas
+
+1. React
+2. API REST
+3. Estilização Avançada com CSS
+4. Responsividade e adaptação de aplicação web para front.
+
+<br>
+
+
+
+# Funcionalidades
 
 ### 1. Tela de cadastro
 - O usuário precisa informar o seu nome, o nickname, o email, senha, com, no mínimo 6 caracteres. 
@@ -32,3 +57,82 @@
 
 ### 7.2 Tela para ver um item específico.
 Ao clicar em uma imagem,deve aparecer um modal com a imagem em um tamanho maior, junto ao resto das informações da imagem, como autor, ano e tags.
+
+<br>
+
+## Escopo do projeto
+
+Criar uma lista de tarefas semanal
+
+<br>
+
+## Como rodar a aplicação
+
+No terminal, clone o projeto:
+```
+git clone 
+```
+
+Entre na pasta do projeto:
+```
+cd image-system
+```
+
+Instale as dependências:
+```
+npm install
+```
+
+Execute a aplicação:
+```
+npm start 
+```
+
+<br>
+
+## Contribuição
+
+Contribuições com o projeto são muito apreciadas. Para isso:
+
+- Faça um Fork do projeto
+
+- Crie uma branch para sua feature
+```
+git checkout -b feature
+```
+
+- Adicione as mudanças
+```
+git add . 
+```
+
+- _Commit_ as mudanças 
+```
+git commit -m 'Adicionando a feature X'
+```
+
+- Faça o push da branch 
+```
+git push origin feature
+```
+
+- Abra um Pull Request
+
+<br>
+
+## Licença
+
+The [MIT License]() (MIT)
+
+Copyright :copyright: 2020 - LabeFood
+
+<br>
+
+## Canais de comunicação
+
+**Anna Fernandes**: *Desenvolvedora web full-stack | Infografista
+- [Linkedin](https://www.linkedin.com/in/annacbfernandes/)
+- [Github](https://github.com/acretelli)
+- [Email](anna.cbf@gmail.com)
+
+<br>
